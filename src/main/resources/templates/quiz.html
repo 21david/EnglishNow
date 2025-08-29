@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Quiz</title>
+</head>
+
+<body>
+
+<form th:action="@{/gradeQuiz}" method="POST">
+
+    <!-- EACH QUESTION -->
+    <div th:each="question : ${questions}">
+        <fieldset>
+            <legend th:text="${question.content}"></legend>
+
+            <!-- Each choice-->
+            <div th:each="choice : ${question.answerChoices}">
+                <input type="radio"
+                       th:id="${choice.id}"
+                       th:name="${question.id}"
+                       th:value="${choice.id}"
+                       th:checked="${answers != null and answers[question.id.toString()] == choice.id.toString()}" > <!-- re-check answers on submission -->
+
+                <label th:for="${choice.id}"
+                       th:text="${choice.content}"></label>
+
+            </div>
+
+            <!-- Add result if form has been submitted -->
+            <p th:if="${results != null}" th:text="${results[question.id]}"></p>
+
+        </fieldset>
+        <br>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+
+</html>
+
+
+
