@@ -25,7 +25,7 @@ public class QuizController {
         this.answerChoiceRepository = answerChoiceRepository;
     }
 
-    @GetMapping("/")
+    @GetMapping("/quiz")
     public String sayHello(Model model) {
         List<Question> questions = questionRepository.findAll();
         model.addAttribute("questions", questions);
