@@ -1,5 +1,7 @@
 package com.david.englishnow.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +20,7 @@ public class AnswerChoice {
 
     @ManyToOne(cascade={CascadeType.DETACH, CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name="question_id")  // Foreign key of this table
+    @JsonIgnore  // prevent infinite recursive circular reference in GET /questions
     private Question question;
 
     public AnswerChoice() {

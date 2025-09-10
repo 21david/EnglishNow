@@ -16,10 +16,9 @@ public class Question {
     @Column(name="content")
     private String content;
 
-    @OneToMany(mappedBy = "question",  // refers to 'question' property in Course
-               fetch = FetchType.EAGER,  // when getting a question, eagerly get its courses as well
+    @OneToMany(mappedBy = "question",  // refers to 'question' property in AnswerChoice
+               fetch = FetchType.EAGER,  // when getting a question, eagerly get its answer choices as well
                cascade = CascadeType.ALL)
-    @Column(name="email")
     private List<AnswerChoice> answerChoices;
 
     // difficulty?
